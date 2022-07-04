@@ -1,5 +1,4 @@
-package learnCoroutines
-
+package com.example.coroutiens
 import kotlinx.coroutines.*
 
 // DESIGN PRINCIPLE
@@ -54,22 +53,35 @@ coroutines inside `runBlocking { ... }` complete their execution.
 
 // main Assigned A Coroutine Returned By runBlocking Coroutine Builder
 //     Hence main itself becomes Coroutine
+//fun main() = runBlocking {
+//    // launch Will Create A New Coroutine
+//    println("runBlocking Created Coroutine!")
+//
+//    // launch Coroutine Builder Is An Extension Function On CoroutineScope
+//    launch {
+//        println("launch Created Coroutine!")
+//        delay( 1000L )
+//        println( "World!" )
+//    }
+//
+////    delay( 1000L )
+//    println("Hello!")
+//    // It Will Be Blocked Till Other Coroutine Completes It!
+//    //       Because That Is The Nature Of Coroutine
+//    //       Created By runBlocking Coroutine Builder
+//}
+
+
 fun main() = runBlocking {
-    // launch Will Create A New Coroutine
     println("runBlocking Created Coroutine!")
-
-    // launch Coroutine Builder Is An Extension Function On CoroutineScope
     launch {
-        println("launch Created Coroutine!")
-        delay( 1000L )
-        println( "World!" )
+        doWorld()
     }
-
-//    delay( 1000L )
     println("Hello!")
-    // It Will Be Blocked Till Other Coroutine Completes It!
-    //       Because That Is The Nature Of Coroutine
-    //       Created By runBlocking Coroutine Builder
 }
 
-
+suspend fun doWorld() {
+    println("launch Created Coroutine!")
+    delay(1000L)
+    println("World!")
+}
